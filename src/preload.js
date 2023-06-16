@@ -7,7 +7,28 @@ contextBridge.exposeInMainWorld('api', {
 ipcRenderer.on('res', (event, res) => { 
     switch(res.resType) 
     {
-      case '':
+      case 'downloaded':
+        console.log('downloaded update')
+        break;
+      
+      case 'error':
+        console.log(res.msg)
+        break;
+      
+      case 'checking':
+        console.log('checking for updates')
+        break;
+
+      case 'available':
+        console.log('update available')
+        break;
+
+      case 'url':
+        console.log(res.url)
+        break;
+
+      case 'version':
+        document.querySelector('#display-version').innerHTML = res.version
         break;
         
       default:   

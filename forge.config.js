@@ -2,8 +2,20 @@ require('dotenv').config();
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN
 
 module.exports = {
-  packagerConfig: {
-    osxSign: {} // object must exist even if empty
+  packagerConfig: 
+  {
+    osxSign: 
+    {
+      indentifier: "Developer ID Application: Stephen Summer (632XLY5W8Y)"
+    },
+
+    osxNotarize: 
+    {
+      tool: 'notarytool',
+      appleId: process.env.APPLE_ID,
+      appleIdPassword: process.env.APPLE_PASSWORD,
+      teamId: process.env.APPLE_TEAM_ID,
+    }
   },
   rebuildConfig: {},
   publishers: [
