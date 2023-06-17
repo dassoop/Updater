@@ -1,5 +1,5 @@
-const { app, BrowserWindow, ipcMain , Menu} = require('electron');
-const { autoUpdater } = require("electron-updater");
+const { app, BrowserWindow, ipcMain , Menu, autoUpdater} = require('electron');
+// const { autoUpdater } = require("electron-updater");
 const path = require('path');
 const functions = require('./functions.js')
 
@@ -127,6 +127,13 @@ const createWindow = () => {
   mainWindow.loadFile(path.join(__dirname, '/view/html/index.html'));
   mainWindow.webContents.openDevTools();
 };
+
+Object.defineProperty(app, 'isPackaged', {
+  get()
+  {
+    return true;
+  }
+})
 
 app.on('ready', createWindow);
 app.on('activate', () => { mainWindow.show(); });
