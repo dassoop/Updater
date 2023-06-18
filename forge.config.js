@@ -26,6 +26,7 @@ module.exports = {
           owner: 'dassoop',
           name: 'Updater'
         },
+        authToken: process.env.GITHUB_TOKEN,
         prerelease: false,
         draft: true
       }
