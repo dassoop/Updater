@@ -86,40 +86,40 @@ const createWindow = () => {
 
   mainWindow.webContents.send('res', res = {resType: 'url', url: url})
 
-  autoUpdater.setFeedURL({ provider: 'generic' ,url })
-  setInterval(() => {
-    autoUpdater.checkForUpdates()
-  }, 10000)
+  // autoUpdater.setFeedURL({ provider: 'generic' ,url })
+  // setInterval(() => {
+  //   autoUpdater.checkForUpdates()
+  // }, 10000)
 
-  autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
-    mainWindow.webContents.send('res', res = {resType: 'downloaded'});
-    const dialogOpts = {
-      type: 'info',
-      buttons: ['Restart', 'Later'],
-      title: 'Application Update',
-      message: process.platform === 'win32' ? releaseNotes : releaseName,
-      detail:
-        'A new version has been downloaded. Restart the application to apply the updates.'
-    }
+  // autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+  //   mainWindow.webContents.send('res', res = {resType: 'downloaded'});
+  //   const dialogOpts = {
+  //     type: 'info',
+  //     buttons: ['Restart', 'Later'],
+  //     title: 'Application Update',
+  //     message: process.platform === 'win32' ? releaseNotes : releaseName,
+  //     detail:
+  //       'A new version has been downloaded. Restart the application to apply the updates.'
+  //   }
 
-    dialog.showMessageBox(dialogOpts).then((returnValue) => {
-      if (returnValue.response === 0) autoUpdater.quitAndInstall()
-    })
-  })
+  //   dialog.showMessageBox(dialogOpts).then((returnValue) => {
+  //     if (returnValue.response === 0) autoUpdater.quitAndInstall()
+  //   })
+  // })
 
-  autoUpdater.on('checking-for-update', (event, releaseNotes, releaseName) => {
-    mainWindow.webContents.send('res', res = {resType: 'checking'});
-  })
+  // autoUpdater.on('checking-for-update', (event, releaseNotes, releaseName) => {
+  //   mainWindow.webContents.send('res', res = {resType: 'checking'});
+  // })
 
-  autoUpdater.on('update-available', (event, releaseNotes, releaseName) => {
-    mainWindow.webContents.send('res', res = {resType: 'available'});
-  })
+  // autoUpdater.on('update-available', (event, releaseNotes, releaseName) => {
+  //   mainWindow.webContents.send('res', res = {resType: 'available'});
+  // })
 
-  autoUpdater.on('error', (message) => {
-    console.error('There was a problem updating the application')
-    console.error(message)
-    mainWindow.webContents.send('res', res = {resType: 'error', msg: message});
-  })
+  // autoUpdater.on('error', (message) => {
+  //   console.error('There was a problem updating the application')
+  //   console.error(message)
+  //   mainWindow.webContents.send('res', res = {resType: 'error', msg: message});
+  // })
   //End Updater
   
   // autoUpdater.checkForUpdatesAndNotify();
